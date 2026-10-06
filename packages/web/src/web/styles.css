@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Poppins", "Helvetica Neue", Arial, sans-serif;
+
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-gem: var(--gem);
+  --color-gem-soft: var(--gem-soft);
+  --color-sage: var(--sage);
+  --color-muted-ink: var(--muted-ink);
+  --color-danger: var(--danger);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --navy: #0f3473;
+  --navy-deep: #0a2350;
+  --ink: #12161c;
+  --cream: #f4f1eb;
+  --paper: #ffffff;
+  --gem: #e8b341;
+  --gem-soft: #fbefcf;
+  --sage: #b6c6bf;
+  --muted-ink: #5c6577;
+  --danger: #c0392b;
+
+  --background: #f4f1eb;
+  --foreground: #12161c;
+  --card: #ffffff;
+  --card-foreground: #12161c;
+  --popover: #ffffff;
+  --popover-foreground: #12161c;
+  --primary: #0f3473;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f1eb;
+  --secondary-foreground: #12161c;
+  --muted: #eceae4;
+  --muted-foreground: #5c6577;
+  --accent: #fbefcf;
+  --accent-foreground: #12161c;
+  --destructive: #c0392b;
+  --border: #12161c;
+  --input: #12161c;
+  --ring: #0f3473;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  .display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    line-height: 0.98;
+    font-weight: 800;
+  }
+  ::selection {
+    background: var(--gem);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  /* Signature offset solid shadow */
+  .hard {
+    box-shadow: 5px 5px 0 0 var(--ink);
+  }
+  .hard-sm {
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .hard-lg {
+    box-shadow: 8px 8px 0 0 var(--ink);
+  }
+  .hard-navy {
+    box-shadow: 5px 5px 0 0 var(--navy);
+  }
+  .hard-cream {
+    box-shadow: 5px 5px 0 0 var(--cream);
+  }
+  .hard-gem {
+    box-shadow: 5px 5px 0 0 var(--gem);
+  }
+  .lift {
+    transition:
+      transform 0.16s ease,
+      box-shadow 0.16s ease;
+  }
+  .lift:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 0 var(--ink);
+  }
+  .lift-cream:hover {
+    box-shadow: 8px 8px 0 0 var(--cream);
+  }
+
+  /* Dotted texture for color bands */
+  .dot-grid {
+    background-image: radial-gradient(currentColor 1.4px, transparent 1.4px);
+    background-size: 26px 26px;
+    background-position: 0 0;
+  }
+
+  .label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 2.5px var(--ink);
+    paint-order: stroke fill;
+  }
+  .stroke-text-cream {
+    color: transparent;
+    -webkit-text-stroke: 2.5px var(--cream);
+  }
+
+  .reveal {
+    animation: reveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .marquee-track {
+    animation: marquee 26s linear infinite;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .gem-spin {
+    animation: gem-spin 5s ease-in-out infinite;
+  }
+  @keyframes gem-spin {
+    0%,
+    100% {
+      transform: rotate(-6deg) scale(1);
+    }
+    50% {
+      transform: rotate(6deg) scale(1.06);
+    }
+  }
+}
